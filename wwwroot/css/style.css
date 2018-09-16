@@ -1,0 +1,13 @@
+td{
+    padding: 0px 10px;
+}
+table{
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+span {
+    color: red;
+}
+.red{
+    color: red;
+}

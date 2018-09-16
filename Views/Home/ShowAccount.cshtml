@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/style.css" />
+    <title>Bank Accounts</title>
+    @model BankAccounts.Models.Transaction
+</head>
+<body>
+    <a asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+    <h1>Welcome, @ViewBag.User.First_Name</h1>
+    <h4>Current Balance: $@ViewBag.User.Balance</h4>
+    <p class="red">@TempData["error"]</p>
+    <table>
+        <form asp-action="transaction" asp-controller="Home" method="POST">
+        <tr>
+        <td><span asp-validation-for="Amount"></span></td>
+        <td><label asp-for="Amount">Deposit/Withdraw:</label></td><td><input asp-for="Amount"></td>
+        <td><input type="submit" type="Submit"></td>
+        </tr>
+    </table>
+</form>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <th>Amount</th>
+            <th>Date</th>
+        </thead>
+        <tbody>
+            @foreach(var transaction in ViewBag.User.Transactions) {
+            <tr>
+                <td>$ @transaction.Amount</td>
+                <td>@transaction.Date.ToString("MMM dd, yyyy")</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
